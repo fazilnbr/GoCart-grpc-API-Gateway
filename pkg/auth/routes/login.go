@@ -5,16 +5,12 @@ import (
 	"net/http"
 
 	"github.com/fazilnbr/banking-grpc-microservice/pkg/auth/pb"
+	"github.com/fazilnbr/banking-grpc-microservice/pkg/domain"
 	"github.com/gin-gonic/gin"
 )
 
-type LoginRequestBody struct {
-	Email    string `json:"email"`
-	Password string `json:"password"`
-}
-
 func Login(ctx *gin.Context, c pb.AuthServiceClient) {
-	b := LoginRequestBody{}
+	b := domain.User{}
 
 	if err := ctx.BindJSON(&b); err != nil {
 		ctx.AbortWithError(http.StatusBadRequest, err)
