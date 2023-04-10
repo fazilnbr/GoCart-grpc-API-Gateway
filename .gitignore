@@ -1,3 +1,4 @@
 /pkg/config/envs/dev.env
 /protoc-3.19.4-linux-x86_64.zip
 *.env
+*.zip
