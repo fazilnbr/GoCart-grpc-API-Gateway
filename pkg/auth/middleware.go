@@ -44,13 +44,13 @@ func (c *AuthMiddlewareConfig) RefreshTokenMiddleware(ctx *gin.Context) {
 		return
 	}
 
-	// if res.Source == "accesstoken" {
-	// 	responses := response.ErrorResponse("Can't use Access Token", "", nil)
-	// 	ctx.Writer.Header().Set("Content-Type", "application/json")
-	// 	ctx.Writer.WriteHeader(http.StatusBadRequest)
-	// 	response.ResponseJSON(*ctx, responses)
-	// 	return
-	// }
+	if res.Source == "accesstoken" {
+		responses := response.ErrorResponse("Can't use Access Token", "", nil)
+		ctx.Writer.Header().Set("Content-Type", "application/json")
+		ctx.Writer.WriteHeader(http.StatusBadRequest)
+		response.ResponseJSON(*ctx, responses)
+		return
+	}
 
 	fmt.Println("setting token", token)
 	ctx.Writer.Header().Set("token", fmt.Sprint(token))
