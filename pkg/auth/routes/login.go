@@ -10,6 +10,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @Summary authentication login
+// @ID authentication login
+// @Tags Authentication
+// @accept json
+// @Produce json
+// @Param Login body domain.User{} true "auth login"
+// @Success 200 {object} response.Response{}
+// @Failure 422 {object} response.Response{}
+// @Router /auth/login [post]
 func Login(ctx *gin.Context, c pb.AuthServiceClient) {
 	b := domain.User{}
 	err := ctx.BindJSON(&b)

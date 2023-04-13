@@ -19,5 +19,10 @@ path:
 	export PATH=$PATH:$GOROOT:$GOPATH:$GOBIN
 	export PATH=$PATH:/usr/local/go/bin
 
+
+swag: ## Generate swagger2 docs
+	swag init -g pkg/auth/routes/register.go --parseDependency -o ./cmd/api/docs
+
 run: ## To run the api gateway
 	go run cmd/main.go
+

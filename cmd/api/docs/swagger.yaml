@@ -1,0 +1,115 @@
+definitions:
+  github_com_fazilnbr_banking-grpc-microservice_pkg_domain.User:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  github_com_fazilnbr_banking-grpc-microservice_pkg_utils_response.Response:
+    properties:
+      data: {}
+      errors: {}
+      message:
+        type: string
+      status:
+        type: boolean
+    type: object
+info:
+  contact:
+    email: fazilkp2000@gmail.com
+    name: API Support
+    url: https://fazilnbr.github.io/mypeosolal.web.portfolio/
+  description: This is a sample server Job Portal server. You can visit the GitHub
+    repository at https://github.com/fazilnbr/Job_Portal_Project
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  title: Go + Gin Workey API
+  version: "1.0"
+paths:
+  /auth/login:
+    post:
+      consumes:
+      - application/json
+      operationId: authentication login
+      parameters:
+      - description: auth login
+        in: body
+        name: Login
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_fazilnbr_banking-grpc-microservice_pkg_domain.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_fazilnbr_banking-grpc-microservice_pkg_utils_response.Response'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/github_com_fazilnbr_banking-grpc-microservice_pkg_utils_response.Response'
+      summary: authentication login
+      tags:
+      - Authentication
+  /auth/register:
+    post:
+      operationId: SignUp authentication
+      parameters:
+      - description: Worker Login
+        in: body
+        name: WorkerLogin
+        required: true
+        schema:
+          allOf:
+          - $ref: '#/definitions/github_com_fazilnbr_banking-grpc-microservice_pkg_domain.User'
+          - properties:
+              password:
+                type: string
+              username:
+                type: string
+            type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_fazilnbr_banking-grpc-microservice_pkg_utils_response.Response'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/github_com_fazilnbr_banking-grpc-microservice_pkg_utils_response.Response'
+      summary: SignUp for users
+      tags:
+      - User Authentication
+      - User Authentication
+  /auth/token-refresh:
+    get:
+      operationId: Refresh access token
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_fazilnbr_banking-grpc-microservice_pkg_utils_response.Response'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/github_com_fazilnbr_banking-grpc-microservice_pkg_utils_response.Response'
+      security:
+      - BearerAuth: []
+      summary: Refresh The Access Token
+      tags:
+      - Refresh Token
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
