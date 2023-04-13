@@ -107,6 +107,37 @@
                     }
                 }
             }
+        },
+        "/auth/token-refresh": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Refresh Token"
+                ],
+                "summary": "Refresh The Access Token",
+                "operationId": "Refresh access token",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_fazilnbr_banking-grpc-microservice_pkg_utils_response.Response"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_fazilnbr_banking-grpc-microservice_pkg_utils_response.Response"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {

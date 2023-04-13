@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/fazilnbr/banking-grpc-microservice/pkg/auth/pb"
+	"github.com/fazilnbr/banking-grpc-microservice/pkg/utils/response"
 	"github.com/gin-gonic/gin"
 )
 
@@ -36,16 +37,20 @@ func (c *AuthMiddlewareConfig) RefreshTokenMiddleware(ctx *gin.Context) {
 	res, err := c.svc.Client.Validate(context.Background(), &pb.ValidateRequest{
 		Token: token[1],
 	})
+	fmt.Printf("\n\nres : %v\nerr : %v\n\n", res, err)
 
 	if err != nil || res.Status != http.StatusOK {
 		ctx.AbortWithStatus(http.StatusUnauthorized)
 		return
 	}
 
-	if res.Source == "accesstoken" {
-		ctx.AbortWithStatusJSON(http.StatusUnauthorized, "can't use access token")
-		return
-	}
+	// if res.Source == "accesstoken" {
+	// 	responses := response.ErrorResponse("Can't use Access Token", "", nil)
+	// 	ctx.Writer.Header().Set("Content-Type", "application/json")
+	// 	ctx.Writer.WriteHeader(http.StatusBadRequest)
+	// 	response.ResponseJSON(*ctx, responses)
+	// 	return
+	// }
 
 	fmt.Println("setting token", token)
 	ctx.Writer.Header().Set("token", fmt.Sprint(token))
@@ -73,7 +78,10 @@ func (c *AuthMiddlewareConfig) AuthRequired(ctx *gin.Context) {
 	})
 
 	if err != nil || res.Status != http.StatusOK {
-		ctx.AbortWithStatus(http.StatusUnauthorized)
+		responses := response.ErrorResponse("Failed to Validate Your Token", err.Error(), nil)
+		ctx.Writer.Header().Set("Content-Type", "application/json")
+		ctx.Writer.WriteHeader(int(res.Status))
+		response.ResponseJSON(*ctx, responses)
 		return
 	}
 

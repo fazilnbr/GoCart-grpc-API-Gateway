@@ -88,6 +88,25 @@ paths:
       tags:
       - User Authentication
       - User Authentication
+  /auth/token-refresh:
+    get:
+      operationId: Refresh access token
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_fazilnbr_banking-grpc-microservice_pkg_utils_response.Response'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/github_com_fazilnbr_banking-grpc-microservice_pkg_utils_response.Response'
+      security:
+      - BearerAuth: []
+      summary: Refresh The Access Token
+      tags:
+      - Refresh Token
 securityDefinitions:
   BearerAuth:
     in: header
