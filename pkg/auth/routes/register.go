@@ -36,7 +36,7 @@ import (
 // @Param WorkerLogin body domain.User{username=string,password=string} true "Worker Login"
 // @Success 200 {object} response.Response{}
 // @Failure 422 {object} response.Response{}
-// @Router /user/signup [post]
+// @Router /auth/register [post]
 func Register(ctx *gin.Context, c pb.AuthServiceClient) {
 	body := domain.User{}
 

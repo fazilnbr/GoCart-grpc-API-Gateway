@@ -56,7 +56,7 @@ paths:
       summary: authentication login
       tags:
       - Authentication
-  /user/signup:
+  /auth/register:
     post:
       operationId: SignUp authentication
       parameters:

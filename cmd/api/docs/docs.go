@@ -64,7 +64,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/user/signup": {
+        "/auth/register": {
             "post": {
                 "produces": [
                     "application/json"
