@@ -6,9 +6,9 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/fazilnbr/banking-grpc-microservice/pkg/auth/pb"
-	"github.com/fazilnbr/banking-grpc-microservice/pkg/utils/response"
-	_ "github.com/fazilnbr/banking-grpc-microservice/pkg/utils/response"
+	"github.com/fazilnbr/GoCart-grpc-API-Gateway/pkg/auth/pb"
+	"github.com/fazilnbr/GoCart-grpc-API-Gateway/pkg/utils/response"
+	_ "github.com/fazilnbr/GoCart-grpc-API-Gateway/pkg/utils/response"
 	"github.com/gin-gonic/gin"
 )
 
