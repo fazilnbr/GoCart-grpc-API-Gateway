@@ -44,7 +44,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_fazilnbr_banking-grpc-microservice_pkg_domain.User"
+                            "$ref": "#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_domain.User"
                         }
                     }
                 ],
@@ -52,13 +52,13 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_fazilnbr_banking-grpc-microservice_pkg_utils_response.Response"
+                            "$ref": "#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response"
                         }
                     },
                     "422": {
                         "description": "Unprocessable Entity",
                         "schema": {
-                            "$ref": "#/definitions/github_com_fazilnbr_banking-grpc-microservice_pkg_utils_response.Response"
+                            "$ref": "#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response"
                         }
                     }
                 }
@@ -84,7 +84,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_fazilnbr_banking-grpc-microservice_pkg_domain.User"
+                                    "$ref": "#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_domain.User"
                                 },
                                 {
                                     "type": "object",
@@ -105,13 +105,13 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_fazilnbr_banking-grpc-microservice_pkg_utils_response.Response"
+                            "$ref": "#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response"
                         }
                     },
                     "422": {
                         "description": "Unprocessable Entity",
                         "schema": {
-                            "$ref": "#/definitions/github_com_fazilnbr_banking-grpc-microservice_pkg_utils_response.Response"
+                            "$ref": "#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response"
                         }
                     }
                 }
@@ -136,13 +136,57 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_fazilnbr_banking-grpc-microservice_pkg_utils_response.Response"
+                            "$ref": "#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response"
                         }
                     },
                     "422": {
                         "description": "Unprocessable Entity",
                         "schema": {
-                            "$ref": "#/definitions/github_com_fazilnbr_banking-grpc-microservice_pkg_utils_response.Response"
+                            "$ref": "#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/product": {
+            "post": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Product",
+                    "User Authentication"
+                ],
+                "summary": "Create a new product",
+                "operationId": "createproduct",
+                "parameters": [
+                    {
+                        "description": "Worker Login",
+                        "name": "WorkerLogin",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_domain.Product"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response"
                         }
                     }
                 }
@@ -150,7 +194,31 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "github_com_fazilnbr_banking-grpc-microservice_pkg_domain.User": {
+        "github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_domain.Product": {
+            "type": "object",
+            "required": [
+                "description",
+                "name",
+                "price",
+                "stock"
+            ],
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "minLength": 15
+                },
+                "name": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "number"
+                },
+                "stock": {
+                    "type": "integer"
+                }
+            }
+        },
+        "github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_domain.User": {
             "type": "object",
             "properties": {
                 "email": {
@@ -164,7 +232,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_fazilnbr_banking-grpc-microservice_pkg_utils_response.Response": {
+        "github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response": {
             "type": "object",
             "properties": {
                 "data": {},

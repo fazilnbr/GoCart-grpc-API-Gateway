@@ -10,6 +10,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @Summary Create a new product
+// @ID createproduct
+// @Tags Product
+// @Produce json
+// @Tags User Authentication
+// @Param WorkerLogin body domain.Product{}} true "Worker Login"
+// @Success 200 {object} response.Response{}
+// @Failure 422 {object} response.Response{}
+// @Router /product [post]
 func CreateProduct(ctx *gin.Context, c pb.ProductServiceClient) {
 	body := domain.Product{}
 

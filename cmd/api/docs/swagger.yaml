@@ -1,5 +1,22 @@
 definitions:
-  github_com_fazilnbr_banking-grpc-microservice_pkg_domain.User:
+  github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_domain.Product:
+    properties:
+      description:
+        minLength: 15
+        type: string
+      name:
+        type: string
+      price:
+        type: number
+      stock:
+        type: integer
+    required:
+    - description
+    - name
+    - price
+    - stock
+    type: object
+  github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_domain.User:
     properties:
       email:
         type: string
@@ -8,7 +25,7 @@ definitions:
       username:
         type: string
     type: object
-  github_com_fazilnbr_banking-grpc-microservice_pkg_utils_response.Response:
+  github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response:
     properties:
       data: {}
       errors: {}
@@ -41,18 +58,18 @@ paths:
         name: Login
         required: true
         schema:
-          $ref: '#/definitions/github_com_fazilnbr_banking-grpc-microservice_pkg_domain.User'
+          $ref: '#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_domain.User'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_fazilnbr_banking-grpc-microservice_pkg_utils_response.Response'
+            $ref: '#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response'
         "422":
           description: Unprocessable Entity
           schema:
-            $ref: '#/definitions/github_com_fazilnbr_banking-grpc-microservice_pkg_utils_response.Response'
+            $ref: '#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response'
       summary: authentication login
       tags:
       - Authentication
@@ -66,7 +83,7 @@ paths:
         required: true
         schema:
           allOf:
-          - $ref: '#/definitions/github_com_fazilnbr_banking-grpc-microservice_pkg_domain.User'
+          - $ref: '#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_domain.User'
           - properties:
               password:
                 type: string
@@ -79,11 +96,11 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_fazilnbr_banking-grpc-microservice_pkg_utils_response.Response'
+            $ref: '#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response'
         "422":
           description: Unprocessable Entity
           schema:
-            $ref: '#/definitions/github_com_fazilnbr_banking-grpc-microservice_pkg_utils_response.Response'
+            $ref: '#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response'
       summary: SignUp for users
       tags:
       - User Authentication
@@ -97,16 +114,45 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_fazilnbr_banking-grpc-microservice_pkg_utils_response.Response'
+            $ref: '#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response'
         "422":
           description: Unprocessable Entity
           schema:
-            $ref: '#/definitions/github_com_fazilnbr_banking-grpc-microservice_pkg_utils_response.Response'
+            $ref: '#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response'
       security:
       - BearerAuth: []
       summary: Refresh The Access Token
       tags:
       - Refresh Token
+  /product:
+    post:
+      operationId: createproduct
+      parameters:
+      - description: Worker Login
+        in: body
+        name: WorkerLogin
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_domain.Product'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response'
+      summary: Create a new product
+      tags:
+      - Product
+      - User Authentication
 securityDefinitions:
   BearerAuth:
     in: header
