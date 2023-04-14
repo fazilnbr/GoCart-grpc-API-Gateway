@@ -3,16 +3,16 @@ package product
 import (
 	"fmt"
 
-	"github.com/fazilnbr/GoCart-grpc-API-Gateway/pkg/auth/pb"
+	"github.com/fazilnbr/GoCart-grpc-API-Gateway/pkg/product/pb"
 	"github.com/fazilnbr/GoCart-grpc-API-Gateway/pkg/config"
 	"google.golang.org/grpc"
 )
 
 type ServiceClient struct {
-	Client pb.AuthServiceClient
+	Client pb.ProductServiceClient
 }
 
-func InitServiceClient(c *config.Config) pb.AuthServiceClient {
+func InitServiceClient(c *config.Config) pb.ProductServiceClient {
 	// using WithInsecure() because no SSL running
 	cc, err := grpc.Dial(c.ProductSvcUrl, grpc.WithInsecure())
 
@@ -20,5 +20,5 @@ func InitServiceClient(c *config.Config) pb.AuthServiceClient {
 		fmt.Println("Could not connect:", err)
 	}
 
-	return pb.NewAuthServiceClient(cc)
+	return pb.NewProductServiceClient(cc)
 }

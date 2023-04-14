@@ -3,15 +3,6 @@ proto: ## To generate the grpc protocols
 	protoc pkg/auth/pb/*.proto --go_out=plugins=grpc:.
 	# protoc pkg/auth/pb/*.proto --go_out=. --go-grpc_out=.
 
-protogen:
-	wget https://github.com/protocolbuffers/protobuf/releases/download/v3.19.4/protoc-3.19.4-linux-x86_64.zip
-	unzip protoc-3.19.4-linux-x86_64.zip -d ~/protobuf
-	export PATH="$PATH:$HOME/protobuf/bin"
-	source ~/.bashrc
-	protoc --version
-	go clean -i github.com/golang/protobuf/protoc-gen-go
-	go install github.com/golang/protobuf/protoc-gen-go
-
 path:
 	export GOROOT=/usr/local/go
 	export GOPATH=$HOME/go
