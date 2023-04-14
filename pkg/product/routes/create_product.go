@@ -14,7 +14,7 @@ import (
 // @ID createproduct
 // @Tags Product
 // @Produce json
-// @Tags User Authentication
+// @Security BearerAuth
 // @Param WorkerLogin body domain.Product{}} true "Worker Login"
 // @Success 200 {object} response.Response{}
 // @Failure 422 {object} response.Response{}

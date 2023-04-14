@@ -156,12 +156,16 @@ const docTemplate = `{
         },
         "/product": {
             "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
-                    "Product",
-                    "User Authentication"
+                    "Product"
                 ],
                 "summary": "Create a new product",
                 "operationId": "createproduct",

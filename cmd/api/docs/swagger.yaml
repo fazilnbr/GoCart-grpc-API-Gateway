@@ -149,10 +149,11 @@ paths:
           description: Unprocessable Entity
           schema:
             $ref: '#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response'
+      security:
+      - BearerAuth: []
       summary: Create a new product
       tags:
       - Product
-      - User Authentication
 securityDefinitions:
   BearerAuth:
     in: header
