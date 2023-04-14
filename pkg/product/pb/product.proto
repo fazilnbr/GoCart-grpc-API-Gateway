@@ -6,17 +6,20 @@ option go_package = "./pkg/product/pb";
 
 service ProductService {
   rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse) {}
-  rpc FindOne(FindOneRequest) returns (FindOneResponse) {}
-  rpc DecreaseStock(DecreaseStockRequest) returns (DecreaseStockResponse) {}
+  rpc GetProduct(GetProductRequest) returns (GetProductResponse) {}
+  rpc ListProduct(ListProductRequest) returns (ListProductResponse) {}
+  rpc UpdateProduct(UpdateProductRequest) returns (UpdateProductResponse) {}
+  rpc DeleteProduct(DeleteProductRequest) returns (DeleteProductResponse) {}
 }
 
 // CreateProduct
 
 message CreateProductRequest {
-  string name = 1;
-  string sku = 2;
-  int64 stock = 3;
-  int64 price = 4;
+    int64 Id =1 ;
+    string Name =2 ;
+    string Description =3 ;
+    float Price =4 ;
+    int64 Stock =5 ;
 }
 
 message CreateProductResponse {
@@ -25,32 +28,66 @@ message CreateProductResponse {
   int64 id = 3;
 }
 
-// FindOne
+// GetProduct
 
-message FindOneData {
+message GetProductRequest {
+  int64 Id = 1;
+  
+}
+
+message GetProductResponse {
+  int64 status = 1;
+  string error = 2;
+  int64 Id =3 ;
+  string Name =4 ;
+  string Description =5 ;
+  float Price =6 ;
+  int64 Stock =7 ;
+}
+
+// ListProduct
+
+message ListProductRequest {}
+
+message ListProductResponse {
+  int64 status = 1;
+  string error = 2;
+  repeated Product products =3;
+}
+
+message Product {
   int64 id = 1;
   string name = 2;
-  string sku = 3;
-  int64 stock = 4;
-  int64 price = 5;
+  string description = 3;
+  float price = 4;
+  int64 stock = 5;
 }
 
-message FindOneRequest { int64 id = 1; }
+// UpdateProduct
 
-message FindOneResponse {
+message UpdateProductRequest {
+  int64 Id =1 ;
+  string Name =2 ;
+  string Description =3 ;
+  float Price =4 ;
+  int64 Stock =5 ;
+}
+
+message UpdateProductResponse {
+int64 status = 1;
+string error = 2;
+int64 id = 3;
+}
+
+// DeleteProduct
+
+message DeleteProductRequest {
+  int64 Id = 1;
+  
+}
+
+message DeleteProductResponse {
   int64 status = 1;
   string error = 2;
-  FindOneData data = 3;
-}
-
-// DecreaseStock
-
-message DecreaseStockRequest {
-  int64 id = 1;
-  int64 orderId = 2;
-}
-
-message DecreaseStockResponse {
-  int64 status = 1;
-  string error = 2;
+  int64 Id =3 ;
 }

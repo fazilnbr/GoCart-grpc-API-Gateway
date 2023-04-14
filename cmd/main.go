@@ -1,12 +1,12 @@
 package main
 
 import (
-	"fmt"
 	"log"
 
 	_ "github.com/fazilnbr/GoCart-grpc-API-Gateway/cmd/api/docs"
 	"github.com/fazilnbr/GoCart-grpc-API-Gateway/pkg/auth"
 	"github.com/fazilnbr/GoCart-grpc-API-Gateway/pkg/config"
+	"github.com/fazilnbr/GoCart-grpc-API-Gateway/pkg/product"
 	"github.com/gin-gonic/gin"
 	swaggerfiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
@@ -25,7 +25,7 @@ func main() {
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 
 	authSvc := *auth.RegisterRoutes(r, &cfg)
-	fmt.Println(authSvc)
+	product.RegisterRoutes(r, &cfg, &authSvc)
 
 	r.Run(cfg.Port)
 
