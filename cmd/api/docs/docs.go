@@ -155,6 +155,84 @@ const docTemplate = `{
             }
         },
         "/product": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Retrieve a product by ID",
+                "operationId": "retriveproduct",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Product Id : ",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Update an existing product",
+                "operationId": "updateproduct",
+                "parameters": [
+                    {
+                        "description": "Product Detials",
+                        "name": "productdetials",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_domain.Product"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response"
+                        }
+                    }
+                }
+            },
             "post": {
                 "security": [
                     {
@@ -171,8 +249,8 @@ const docTemplate = `{
                 "operationId": "createproduct",
                 "parameters": [
                     {
-                        "description": "Worker Login",
-                        "name": "WorkerLogin",
+                        "description": "Product Detials",
+                        "name": "productdetials",
                         "in": "body",
                         "required": true,
                         "schema": {
@@ -180,6 +258,75 @@ const docTemplate = `{
                         }
                     }
                 ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Delete a product by ID",
+                "operationId": "deleteproduct",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Product Id : ",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/product/all": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Product"
+                ],
+                "summary": "List all available products",
+                "operationId": "listproduct",
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -210,6 +357,9 @@ const docTemplate = `{
                 "description": {
                     "type": "string",
                     "minLength": 15
+                },
+                "id": {
+                    "type": "integer"
                 },
                 "name": {
                     "type": "string"

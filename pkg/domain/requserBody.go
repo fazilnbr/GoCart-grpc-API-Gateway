@@ -7,7 +7,7 @@ type User struct {
 }
 
 type Product struct {
-	Id          int64   `json:"-" gorm:"primaryKey;autoIncrement:true;unique"`
+	Id          int64   `json:"id" gorm:"primaryKey;autoIncrement:true;unique"`
 	Name        string  `json:"name" gorm:"not null;unique" binding:"required"`
 	Description string  `json:"description"  binding:"required,min=15"`
 	Price       float32 `json:"price" gorm:"not null;unique" binding:"required"`

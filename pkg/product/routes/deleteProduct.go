@@ -1,38 +1,29 @@
 package routes
 
 import (
-	"context"
 	"net/http"
+	"strconv"
 
-	"github.com/fazilnbr/GoCart-grpc-API-Gateway/pkg/domain"
 	"github.com/fazilnbr/GoCart-grpc-API-Gateway/pkg/product/pb"
 	"github.com/fazilnbr/GoCart-grpc-API-Gateway/pkg/utils/response"
 	"github.com/gin-gonic/gin"
 )
 
-// @Summary Create a new product
-// @ID createproduct
+// @Summary  Delete a product by ID
+// @ID deleteproduct
 // @Tags Product
 // @Produce json
 // @Security BearerAuth
-// @Param WorkerLogin body domain.Product{}} true "Worker Login"
+// @Param        id   query      string  true  "Id : "
 // @Success 200 {object} response.Response{}
 // @Failure 422 {object} response.Response{}
-// @Router /product [post]
-func CreateProduct(ctx *gin.Context, c pb.ProductServiceClient) {
-	body := domain.Product{}
+// @Router /product [delete]
+func DeleteProduct(ctx *gin.Context, c pb.ProductServiceClient) {
 
-	if err := ctx.BindJSON(&body); err != nil {
-		ctx.AbortWithError(http.StatusBadRequest, err)
-		return
-	}
+	id, _ := strconv.Atoi(ctx.Query("id"))
 
-	res, err := c.CreateProduct(context.Background(), &pb.CreateProductRequest{
-		Id:          body.Id,
-		Name:        body.Name,
-		Description: body.Description,
-		Price:       body.Price,
-		Stock:       body.Stock,
+	res, err := c.DeleteProduct(ctx, &pb.DeleteProductRequest{
+		Id: int64(id),
 	})
 
 	if err != nil {
@@ -45,7 +36,7 @@ func CreateProduct(ctx *gin.Context, c pb.ProductServiceClient) {
 
 	responses := response.SuccessResponse(true, "SUCCESS", res)
 	ctx.Writer.Header().Set("Content-Type", "application/json")
-	ctx.Writer.WriteHeader(http.StatusBadRequest)
+	ctx.Writer.WriteHeader(http.StatusOK)
 	response.ResponseJSON(*ctx, responses)
 	return
 

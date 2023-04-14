@@ -4,6 +4,8 @@ definitions:
       description:
         minLength: 15
         type: string
+      id:
+        type: integer
       name:
         type: string
       price:
@@ -129,12 +131,60 @@ paths:
       tags:
       - Refresh Token
   /product:
+    delete:
+      operationId: deleteproduct
+      parameters:
+      - description: 'Product Id : '
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response'
+      security:
+      - BearerAuth: []
+      summary: Delete a product by ID
+      tags:
+      - Product
+    get:
+      operationId: retriveproduct
+      parameters:
+      - description: 'Product Id : '
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response'
+      security:
+      - BearerAuth: []
+      summary: Retrieve a product by ID
+      tags:
+      - Product
     post:
       operationId: createproduct
       parameters:
-      - description: Worker Login
+      - description: Product Detials
         in: body
-        name: WorkerLogin
+        name: productdetials
         required: true
         schema:
           $ref: '#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_domain.Product'
@@ -152,6 +202,50 @@ paths:
       security:
       - BearerAuth: []
       summary: Create a new product
+      tags:
+      - Product
+    put:
+      operationId: updateproduct
+      parameters:
+      - description: Product Detials
+        in: body
+        name: productdetials
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_domain.Product'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response'
+      security:
+      - BearerAuth: []
+      summary: Update an existing product
+      tags:
+      - Product
+  /product/all:
+    get:
+      operationId: listproduct
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response'
+      security:
+      - BearerAuth: []
+      summary: List all available products
       tags:
       - Product
 securityDefinitions:
