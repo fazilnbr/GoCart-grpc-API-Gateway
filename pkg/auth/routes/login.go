@@ -4,9 +4,9 @@ import (
 	"context"
 	"net/http"
 
-	"github.com/fazilnbr/banking-grpc-microservice/pkg/auth/pb"
-	"github.com/fazilnbr/banking-grpc-microservice/pkg/domain"
-	"github.com/fazilnbr/banking-grpc-microservice/pkg/utils/response"
+	"github.com/fazilnbr/GoCart-grpc-API-Gateway/pkg/auth/pb"
+	"github.com/fazilnbr/GoCart-grpc-API-Gateway/pkg/domain"
+	"github.com/fazilnbr/GoCart-grpc-API-Gateway/pkg/utils/response"
 	"github.com/gin-gonic/gin"
 )
 

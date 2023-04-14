@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"log"
 
-	_ "github.com/fazilnbr/banking-grpc-microservice/cmd/api/docs"
-	"github.com/fazilnbr/banking-grpc-microservice/pkg/auth"
-	"github.com/fazilnbr/banking-grpc-microservice/pkg/config"
+	_ "github.com/fazilnbr/GoCart-grpc-API-Gateway/cmd/api/docs"
+	"github.com/fazilnbr/GoCart-grpc-API-Gateway/pkg/auth"
+	"github.com/fazilnbr/GoCart-grpc-API-Gateway/pkg/config"
 	"github.com/gin-gonic/gin"
 	swaggerfiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"

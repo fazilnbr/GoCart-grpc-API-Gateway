@@ -1,8 +1,8 @@
 package auth
 
 import (
-	"github.com/fazilnbr/banking-grpc-microservice/pkg/auth/routes"
-	"github.com/fazilnbr/banking-grpc-microservice/pkg/config"
+	"github.com/fazilnbr/GoCart-grpc-API-Gateway/pkg/auth/routes"
+	"github.com/fazilnbr/GoCart-grpc-API-Gateway/pkg/config"
 	"github.com/gin-gonic/gin"
 )
 

@@ -3,8 +3,8 @@ package auth
 import (
 	"fmt"
 
-	"github.com/fazilnbr/banking-grpc-microservice/pkg/auth/pb"
-	"github.com/fazilnbr/banking-grpc-microservice/pkg/config"
+	"github.com/fazilnbr/GoCart-grpc-API-Gateway/pkg/auth/pb"
+	"github.com/fazilnbr/GoCart-grpc-API-Gateway/pkg/config"
 	"google.golang.org/grpc"
 )
 

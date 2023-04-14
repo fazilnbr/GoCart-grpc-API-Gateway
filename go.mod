@@ -1,4 +1,4 @@
-module github.com/fazilnbr/banking-grpc-microservice
+module github.com/fazilnbr/GoCart-grpc-API-Gateway
 
 go 1.19
 
