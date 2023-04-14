@@ -1,7 +1,6 @@
 package routes
 
 import (
-	"fmt"
 	"net/http"
 	"strconv"
 
@@ -22,7 +21,6 @@ import (
 func GetProduct(ctx *gin.Context, c pb.ProductServiceClient) {
 
 	id, _ := strconv.Atoi(ctx.Query("id"))
-	fmt.Println(id)
 
 	res, err := c.GetProduct(ctx, &pb.GetProductRequest{
 		Id: int64(id),
