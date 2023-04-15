@@ -37,8 +37,7 @@ message RemoveProductFromCartResponse {
 // GetCart
 
 message GetCartRequest {
-    int64 CartId =1 ;
-    int64 Quantity =2 ;
+    int64 userId =1 ;
 }
 
 message GetCartResponse {
