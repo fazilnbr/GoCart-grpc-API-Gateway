@@ -13,3 +13,8 @@ type Product struct {
 	Price       float32 `json:"price" gorm:"not null;unique" binding:"required"`
 	Stock       int64   `json:"stock" gorm:"not null;unique" binding:"required"`
 }
+
+type AddProduct struct {
+	ProductId int64 `json:"productid"`
+	Quantity  int   `json:"quantity"`
+}

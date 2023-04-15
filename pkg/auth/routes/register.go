@@ -30,9 +30,8 @@ import (
 
 // @Summary SignUp for users
 // @ID SignUp authentication
-// @Tags User Authentication
+// @Tags Authentication
 // @Produce json
-// @Tags User Authentication
 // @Param WorkerLogin body domain.User{username=string,password=string} true "Worker Login"
 // @Success 200 {object} response.Response{}
 // @Failure 422 {object} response.Response{}

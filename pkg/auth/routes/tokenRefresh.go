@@ -14,7 +14,7 @@ import (
 
 // @Summary Refresh The Access Token
 // @ID Refresh access token
-// @Tags Refresh Token
+// @Tags Authentication
 // @Security BearerAuth
 // @Produce json
 // @Success 200 {object} response.Response{}

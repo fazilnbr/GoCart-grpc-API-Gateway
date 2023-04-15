@@ -70,8 +70,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "User Authentication",
-                    "User Authentication"
+                    "Authentication"
                 ],
                 "summary": "SignUp for users",
                 "operationId": "SignUp authentication",
@@ -128,7 +127,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Refresh Token"
+                    "Authentication"
                 ],
                 "summary": "Refresh The Access Token",
                 "operationId": "Refresh access token",
@@ -141,6 +140,117 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/cart/product": {
+            "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Cart"
+                ],
+                "summary": "Remove Product From Cart",
+                "operationId": "RemoveProductFromCart",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Id : ",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/cart/products": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Cart"
+                ],
+                "summary": "Get cart",
+                "operationId": "GetCart",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Cart"
+                ],
+                "summary": "Add Product To Cart",
+                "operationId": "AddProductToCart",
+                "parameters": [
+                    {
+                        "description": "Product Detials",
+                        "name": "productdetials",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_domain.AddProduct"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response"
                         }
@@ -172,7 +282,7 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Product Id : ",
+                        "description": "Id : ",
                         "name": "id",
                         "in": "query",
                         "required": true
@@ -290,7 +400,7 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Product Id : ",
+                        "description": "Id : ",
                         "name": "id",
                         "in": "query",
                         "required": true
@@ -345,6 +455,17 @@ const docTemplate = `{
         }
     },
     "definitions": {
+        "github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_domain.AddProduct": {
+            "type": "object",
+            "properties": {
+                "productid": {
+                    "type": "integer"
+                },
+                "quantity": {
+                    "type": "integer"
+                }
+            }
+        },
         "github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_domain.Product": {
             "type": "object",
             "required": [
