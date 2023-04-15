@@ -70,8 +70,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "User Authentication",
-                    "User Authentication"
+                    "Authentication"
                 ],
                 "summary": "SignUp for users",
                 "operationId": "SignUp authentication",
@@ -128,7 +127,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Refresh Token"
+                    "Authentication"
                 ],
                 "summary": "Refresh The Access Token",
                 "operationId": "Refresh access token",
@@ -165,7 +164,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Product"
+                    "Cart"
                 ],
                 "summary": "Remove Product From Cart",
                 "operationId": "RemoveProductFromCart",
@@ -205,7 +204,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Product"
+                    "Cart"
                 ],
                 "summary": "Get cart",
                 "operationId": "GetCart",
@@ -234,7 +233,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Product"
+                    "Cart"
                 ],
                 "summary": "Add Product To Cart",
                 "operationId": "AddProductToCart",

@@ -22,3 +22,5 @@ func InitServiceClient(c *config.Config) pb.CartServiceClient {
 
 	return pb.NewCartServiceClient(cc)
 }
+
+

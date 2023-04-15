@@ -13,7 +13,7 @@ import (
 
 // @Summary Add Product To Cart
 // @ID AddProductToCart
-// @Tags Product
+// @Tags Cart
 // @Produce json
 // @Security BearerAuth
 // @Param productdetials body domain.AddProduct{} true "Product Detials"
@@ -27,8 +27,6 @@ func AddProductToCart(ctx *gin.Context, c pb.CartServiceClient) {
 		ctx.AbortWithError(http.StatusBadRequest, err)
 		return
 	}
-
-	
 
 	id, _ := strconv.Atoi(ctx.Writer.Header().Get("userId"))
 	res, err := c.AddProductToCart(context.Background(), &pb.AddProductToCartRequest{

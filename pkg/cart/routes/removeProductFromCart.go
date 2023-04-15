@@ -12,7 +12,7 @@ import (
 
 // @Summary Remove Product From Cart
 // @ID RemoveProductFromCart
-// @Tags Product
+// @Tags Cart
 // @Produce json
 // @Security BearerAuth
 // @Param        id   query      string  true  "Id : "

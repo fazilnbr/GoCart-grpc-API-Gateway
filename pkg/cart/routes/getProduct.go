@@ -12,7 +12,7 @@ import (
 
 // @Summary Get cart
 // @ID GetCart
-// @Tags Product
+// @Tags Cart
 // @Produce json
 // @Security BearerAuth
 // @Success 200 {object} response.Response{}

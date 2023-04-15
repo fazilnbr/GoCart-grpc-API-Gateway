@@ -112,8 +112,7 @@ paths:
             $ref: '#/definitions/github_com_fazilnbr_GoCart-grpc-API-Gateway_pkg_utils_response.Response'
       summary: SignUp for users
       tags:
-      - User Authentication
-      - User Authentication
+      - Authentication
   /auth/token-refresh:
     get:
       operationId: Refresh access token
@@ -136,7 +135,7 @@ paths:
       - BearerAuth: []
       summary: Refresh The Access Token
       tags:
-      - Refresh Token
+      - Authentication
   /cart/product:
     delete:
       operationId: RemoveProductFromCart
@@ -161,7 +160,7 @@ paths:
       - BearerAuth: []
       summary: Remove Product From Cart
       tags:
-      - Product
+      - Cart
   /cart/products:
     get:
       operationId: GetCart
@@ -180,7 +179,7 @@ paths:
       - BearerAuth: []
       summary: Get cart
       tags:
-      - Product
+      - Cart
     post:
       operationId: AddProductToCart
       parameters:
@@ -205,7 +204,7 @@ paths:
       - BearerAuth: []
       summary: Add Product To Cart
       tags:
-      - Product
+      - Cart
   /product:
     delete:
       operationId: deleteproduct
