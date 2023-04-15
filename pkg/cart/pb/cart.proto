@@ -3,7 +3,7 @@ package cart;
 
 option go_package = "./pkg/cart/pb";
 
-service ProductService {
+service CartService {
   rpc AddProductToCart(AddProductToCartRequest) returns (AddProductToCartResponse) {}
   rpc RemoveProductFromCart (RemoveProductFromCartRequest) returns (RemoveProductFromCartResponse) {}
   rpc GetCart (GetCartRequest) returns (GetCartResponse) {}
