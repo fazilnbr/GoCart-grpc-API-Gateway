@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func RegisterRoutes(r *gin.Engine, c *config.Config, authSvc *auth.ServiceClient) {
+func RegisterRoutes(r *gin.Engine, c *config.Config, authSvc *auth.ServiceClient)*ServiceClient {
 	// auth := auth.InitAuthMiddleware(authSvc)
 	svc := &ServiceClient{
 		Client: InitServiceClient(c),
@@ -20,6 +20,7 @@ func RegisterRoutes(r *gin.Engine, c *config.Config, authSvc *auth.ServiceClient
 	product.GET("/all",svc.ListProduct)
 	product.PUT("/",svc.UpdateProduct)
 	product.DELETE("/",svc.DeleteProduct)
+	return svc
 
 }
 

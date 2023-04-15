@@ -5,6 +5,7 @@ import (
 
 	_ "github.com/fazilnbr/GoCart-grpc-API-Gateway/cmd/api/docs"
 	"github.com/fazilnbr/GoCart-grpc-API-Gateway/pkg/auth"
+	"github.com/fazilnbr/GoCart-grpc-API-Gateway/pkg/cart"
 	"github.com/fazilnbr/GoCart-grpc-API-Gateway/pkg/config"
 	"github.com/fazilnbr/GoCart-grpc-API-Gateway/pkg/product"
 	"github.com/gin-gonic/gin"
@@ -26,6 +27,7 @@ func main() {
 
 	authSvc := *auth.RegisterRoutes(r, &cfg)
 	product.RegisterRoutes(r, &cfg, &authSvc)
+	cart.RegisterRoutes(r,&cfg,&authSvc)
 
 	r.Run(cfg.Port)
 
