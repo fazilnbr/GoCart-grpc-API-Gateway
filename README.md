@@ -27,5 +27,5 @@ $ make server
 
 ## Author
 
-- [Kevin Vogel](https://medium.com/@hellokevinvogel)
+- [fazilnbr](https://www.linkedin.com/in/fazil-muhammed-915807190/)
 
